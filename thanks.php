@@ -2,13 +2,25 @@
 // var_dump($_POST);
 
 require_once('functions.php');
+require_once('dbconnect.php');
 
 //入力された内容を取得
 $username = $_POST['username'];
-
 $email = $_POST['email'];
-
 $content = $_POST['content'];
+
+//実行するSQL分の作成準備
+$sql = 'INSERT INTO surveys(name, email, content, created_at) VALUES(:name, :email, :content, now())';
+
+//SQL文の実行準備
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':name', $username, PDO::PARAM_STR);
+$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+$stmt->bindParam(':content', $content, PDO::PARAM_STR);
+
+//SQL文を実行
+$stmt->execute();
+
 ?>
 
 <!DOCTYPE html>
