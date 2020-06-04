@@ -3,6 +3,8 @@
 require_once('functions.php');
 require_once('dbconnect.php');
 
+
+
 //全件取得用のSQL文作成
 $sql = 'SELECT * FROM surveys';
 
@@ -14,7 +16,7 @@ $stmt->execute();
 
 //結果の取得
 $results = $stmt->fetchAll();
-var_dump($results);
+// var_dump($results);
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +36,13 @@ var_dump($results);
 <body>
   
   
-  <?php for ($i = 1; $i <= 10; $i++) { ?>
+  <?php foreach ($results as $key => $value) { ?>
   
   <div>
-    <p>ID: 1</p>
-    <p>名前：〇〇</p>
-    <p>メールアドレス：longwangc@gmail.com</p>
-    <p>お問い合わせ内容：</p>
+    <p>ID: <?php echo h($key + 1); ?> </p>
+    <p>名前：<?php echo h($value['name']); ?></p>
+    <p>メールアドレス： <?php echo h($value['email']); ?></p>
+    <p>お問い合わせ内容：<?php echo h($value['content']); ?></p>
   </div>
 
   <?php } ?>
