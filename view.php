@@ -39,7 +39,7 @@ $results = $stmt->fetchAll();
   <?php foreach ($results as $key => $value) { ?>
   
   <div>
-    <p>ID: <?php echo h($key + 1); ?> </p>
+    <p>ID: <?php echo h($value['id']); ?> </p>
     <p>名前：<?php echo h($value['name']); ?></p>
     <p>メールアドレス： <?php echo h($value['email']); ?></p>
     <p>お問い合わせ内容：<?php echo h($value['content']); ?></p>
